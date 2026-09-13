@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discover Daily — five things you've never searched for</title>
+<meta name="description" content="Discover Daily reads your own browsing history, locally, and finds topics, skills, and languages you haven't explored yet. One fresh set every day." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #14192B;
+    --bg-deep: #0F1322;
+    --panel: #1D2440;
+    --hairline: #262E52;
+    --hairline-strong: #333C64;
+    --text: #EDEFF7;
+    --text-dim: #9AA3C4;
+    --text-faint: #6B7396;
+    --accent: #FFB454;
+    --accent-text: #14192B;
+    --mint: #7FD8A6;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+  a { color: var(--accent); }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* Star field texture behind the hero, drawn once, no motion */
+  .sky {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(1px 1px at 8% 22%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 22% 68%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1.5px 1.5px at 35% 15%, rgba(255,255,255,0.45), transparent),
+      radial-gradient(1px 1px at 48% 78%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(1.5px 1.5px at 62% 30%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 75% 60%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 88% 20%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 92% 75%, rgba(255,255,255,0.3), transparent),
+      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 100%);
+  }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 9px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; }
+  .brand svg { color: var(--accent); }
+  nav .links { display: flex; gap: 28px; font-size: 13.5px; color: var(--text-dim); }
+  nav .links a { color: var(--text-dim); text-decoration: none; }
+  nav .links a:hover { color: var(--text); }
+
+  .hero { padding: 64px 0 84px; }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(34px, 5.5vw, 54px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    max-width: 15ch;
+  }
+  .hero .sub {
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 46ch;
+    margin: 0 0 32px;
+    line-height: 1.6;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: var(--accent-text); text-decoration: none;
+    font-weight: 600; font-size: 14px; padding: 13px 22px; border-radius: 10px;
+    display: inline-block;
+  }
+  .btn-note { font-size: 13px; color: var(--text-faint); }
+
+  section { padding: 70px 0; border-top: 1px solid var(--hairline); }
+
+  .section-head { max-width: 52ch; margin-bottom: 40px; }
+  .section-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px; margin: 0 0 10px;
+  }
+  .section-head p { color: var(--text-dim); margin: 0; font-size: 15px; }
+
+  .steps { display: flex; flex-direction: column; gap: 26px; }
+  .step { display: flex; gap: 20px; align-items: flex-start; }
+  .step-mark {
+    flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--hairline-strong); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px;
+  }
+  .step h3 { margin: 4px 0 5px; font-size: 16px; font-weight: 600; }
+  .step p { margin: 0; color: var(--text-dim); font-size: 14.5px; max-width: 55ch; }
+
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .plan {
+    border: 1px solid var(--hairline); border-radius: 14px; padding: 26px;
+  }
+  .plan.pro { border-color: var(--accent); background: rgba(255,180,84,0.05); }
+  .plan h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 18px; margin: 0 0 4px; }
+  .plan .price { color: var(--text-dim); font-size: 13px; margin: 0 0 18px; }
+  .plan ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .plan li { font-size: 13.5px; color: var(--text-dim); padding-left: 18px; position: relative; }
+  .plan li::before { content: "—"; position: absolute; left: 0; color: var(--text-faint); }
+  .plan.pro li { color: var(--text); }
+  .plan.pro li::before { content: "✦"; color: var(--accent); font-size: 11px; top: 2px; }
+
+  .trust {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .trust-item h4 { font-size: 14.5px; font-weight: 600; margin: 0 0 7px; }
+  .trust-item p { font-size: 13.5px; color: var(--text-dim); margin: 0; line-height: 1.55; }
+
+  footer {
+    border-top: 1px solid var(--hairline);
+    padding: 34px 0 48px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer .fbrand { font-family: 'Fraunces', serif; font-size: 14px; color: var(--text-dim); }
+  footer .flinks { display: flex; gap: 22px; font-size: 13px; }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .plans { grid-template-columns: 1fr; }
+    .trust { grid-template-columns: 1fr; }
+    nav .links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sky">
+  <div class="wrap">
+    <nav>
+      <div class="brand">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M12 3 L14.5 11.5 L12 21 L9.5 11.5 Z" fill="currentColor"/>
+        </svg>
+        Discover Daily
+      </div>
+      <div class="links">
+        <a href="#how-it-works">How it works</a>
+        <a href="#plans">Pricing</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <h1>Five things you've never searched for. Every day.</h1>
+      <p class="sub">
+        Discover Daily reads your own browsing history — locally, on your
+        device — and compares it against a curated bank of topics spanning
+        science, languages, history, and more. Each morning, it hands you
+        five things you genuinely haven't looked into yet.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#how-it-works">See how it works</a>
+        <span class="btn-note">A browser extension for Chrome and Edge — nothing to install to read this page.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="how-it-works">
+    <div class="section-head">
+      <h2>How it works</h2>
+      <p>No accounts, no setup, no algorithm you have to train.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-mark">1</span>
+        <div>
+          <h3>You browse like normal</h3>
+          <p>Nothing changes about how you use your browser. No new tabs, no interruptions, no tracking beyond what already happens locally in your own history.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-mark">2</span>
+        <div>
+          <h3>It compares your history to a curated topic bank</h3>
+          <p>All of this happens on your device, inside the extension. Your browsing history is never uploaded anywhere.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-mark">3</span>
+        <div>
+          <h3>Every morning, five fresh picks</h3>
+          <p>Spread across categories — science, languages, history, philosophy, skills, and more — filtered so they're genuinely new to you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="section-head">
+      <h2>Free, or Pro if it sticks</h2>
+      <p>Start free. Upgrade only if this becomes a habit worth investing in.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <p class="price">No account needed</p>
+        <ul>
+          <li>5 daily topics from an 85-topic bank</li>
+          <li>1 reshuffle per day</li>
+          <li>Streak tracking</li>
+          <li>Night Sky theme</li>
+        </ul>
+      </div>
+      <div class="plan pro">
+        <h3>Pro</h3>
+        <p class="price">Monthly or annual</p>
+        <ul>
+          <li>Unlimited reshuffles</li>
+          <li>Curated, higher-quality video sources</li>
+          <li>Learning journal with notes and export</li>
+          <li>Spanish &amp; Hindi topic packs</li>
+          <li>Import your own custom topic packs</li>
+          <li>Daybreak &amp; Sepia themes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="section-head">
+      <h2>Where your data goes</h2>
+      <p>Short version: nowhere, except one small check.</p>
+    </div>
+    <div class="trust">
+      <div class="trust-item">
+        <h4>Your history stays on your device</h4>
+        <p>Comparisons run locally inside the extension. There's no server that receives or stores your browsing history.</p>
+      </div>
+      <div class="trust-item">
+        <h4>One network call for Pro</h4>
+        <p>If you upgrade, the extension checks whether your email has an active subscription. That's the only data it sends anywhere.</p>
+      </div>
+      <div class="trust-item">
+        <h4>Delete it any time</h4>
+        <p>Uninstalling removes everything stored locally — streaks, notes, settings. Nothing persists elsewhere.</p>
+      </div>
+    </div>
+    <p style="margin-top:28px; font-size: 13.5px;"><a href="privacy.html">Read the full privacy policy →</a></p>
+  </section>
+
+</div>
+
+<div class="wrap">
+  <footer>
+    <div class="fbrand">Discover Daily</div>
+    <div class="flinks">
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:Souravnahata26@gmail.com">Contact</a>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
