@@ -4,41 +4,26 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Discover Daily — five things you've never searched for</title>
-<meta name="description" content="Discover Daily reads your own browsing history, locally, and finds topics, skills, and languages you haven't explored yet. One fresh set every day." />
+<meta name="description" content="Discover Daily reads your own browsing history, locally, and finds topics, skills, and languages you haven't explored yet. One fresh set every day, free to start." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #14192B;
-    --bg-deep: #0F1322;
-    --panel: #1D2440;
-    --hairline: #262E52;
-    --hairline-strong: #333C64;
-    --text: #EDEFF7;
-    --text-dim: #9AA3C4;
-    --text-faint: #6B7396;
-    --accent: #FFB454;
-    --accent-text: #14192B;
-    --mint: #7FD8A6;
+    --bg: #14192B; --bg-deep: #0F1322; --panel: #1D2440; --panel-hi: #222A4C;
+    --hairline: #262E52; --hairline-strong: #333C64;
+    --text: #EDEFF7; --text-dim: #9AA3C4; --text-faint: #6B7396;
+    --accent: #FFB454; --accent-text: #14192B; --mint: #7FD8A6;
+    --video: #FF8A8A; --video-wash: rgba(255,138,138,0.1); --video-border: rgba(255,138,138,0.25);
+    --article: #8FC5FF; --article-wash: rgba(143,197,255,0.1); --article-border: rgba(143,197,255,0.25);
   }
-
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', -apple-system, sans-serif;
-    line-height: 1.5;
-  }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.55; }
   a { color: var(--accent); }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-
-  /* Star field texture behind the hero, drawn once, no motion */
   .sky {
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
     background:
       radial-gradient(1px 1px at 8% 22%, rgba(255,255,255,0.5), transparent),
       radial-gradient(1px 1px at 22% 68%, rgba(255,255,255,0.35), transparent),
@@ -51,92 +36,91 @@
       linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 100%);
   }
 
-  nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 26px 0;
-  }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 0; }
   .brand { display: flex; align-items: center; gap: 9px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; }
   .brand svg { color: var(--accent); }
-  nav .links { display: flex; gap: 28px; font-size: 13.5px; color: var(--text-dim); }
+  nav .links { display: flex; gap: 26px; font-size: 13.5px; color: var(--text-dim); }
   nav .links a { color: var(--text-dim); text-decoration: none; }
   nav .links a:hover { color: var(--text); }
 
-  .hero { padding: 64px 0 84px; }
+  .hero { padding: 56px 0 48px; }
   .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(34px, 5.5vw, 54px);
-    line-height: 1.12;
-    letter-spacing: -0.01em;
-    margin: 0 0 22px;
-    max-width: 15ch;
+    font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(32px, 5vw, 50px);
+    line-height: 1.12; letter-spacing: -0.01em; margin: 0 0 20px; max-width: 16ch;
   }
-  .hero .sub {
-    font-size: 17px;
-    color: var(--text-dim);
-    max-width: 46ch;
-    margin: 0 0 32px;
-    line-height: 1.6;
-  }
-  .hero-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--accent); color: var(--accent-text); text-decoration: none;
-    font-weight: 600; font-size: 14px; padding: 13px 22px; border-radius: 10px;
-    display: inline-block;
-  }
-  .btn-note { font-size: 13px; color: var(--text-faint); }
+  .hero .sub { font-size: 16.5px; color: var(--text-dim); max-width: 50ch; margin: 0 0 28px; line-height: 1.6; }
+  .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: var(--accent-text); text-decoration: none; font-weight: 600; font-size: 14px; padding: 13px 22px; border-radius: 10px; display: inline-block; border: none; cursor: pointer; font-family: inherit; }
+  .badge-soon { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--text-dim); background: var(--panel); border: 1px solid var(--hairline-strong); padding: 6px 12px; border-radius: 999px; }
 
-  section { padding: 70px 0; border-top: 1px solid var(--hairline); }
+  section { padding: 60px 0; border-top: 1px solid var(--hairline); }
+  .section-head { max-width: 56ch; margin-bottom: 34px; }
+  .section-head .eyebrow { font-size: 11.5px; color: var(--accent); margin: 0 0 8px; }
+  .section-head h2 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 25px; margin: 0 0 10px; }
+  .section-head p { color: var(--text-dim); margin: 0; font-size: 14.5px; }
 
-  .section-head { max-width: 52ch; margin-bottom: 40px; }
-  .section-head h2 {
-    font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px; margin: 0 0 10px;
-  }
-  .section-head p { color: var(--text-dim); margin: 0; font-size: 15px; }
+  .demo-frame { background: var(--panel); border: 1px solid var(--hairline-strong); border-radius: 16px; padding: 20px; }
+  .demo-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .demo-title { font-family: 'Fraunces', serif; font-size: 15px; }
+  .demo-shuffle { background: transparent; border: 1px solid var(--hairline-strong); color: var(--text); font-size: 12px; padding: 7px 13px; border-radius: 8px; cursor: pointer; font-family: inherit; }
+  .demo-shuffle:hover { border-color: var(--text-faint); }
+  .demo-cards { display: flex; flex-direction: column; gap: 8px; }
+  .demo-card { background: var(--bg); border: 1px solid var(--hairline); border-radius: 11px; padding: 13px 14px; }
+  .demo-cat { font-size: 10.5px; color: var(--accent); margin-bottom: 3px; }
+  .demo-title-text { font-family: 'Fraunces', serif; font-size: 14.5px; margin: 0 0 4px; }
+  .demo-blurb { font-size: 12.5px; color: var(--text-dim); margin: 0 0 8px; line-height: 1.5; }
+  .demo-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .demo-link { font-size: 11px; font-weight: 500; text-decoration: none; padding: 5px 10px; border-radius: 7px; border: 1px solid transparent; }
+  .demo-link.watch { color: var(--video); background: var(--video-wash); border-color: var(--video-border); }
+  .demo-link.read { color: var(--article); background: var(--article-wash); border-color: var(--article-border); }
+  .demo-link.wiki { color: var(--text-dim); background: var(--hairline); border-color: var(--hairline-strong); }
+  .demo-caption { text-align: center; font-size: 12.5px; color: var(--text-faint); margin-top: 14px; }
 
-  .steps { display: flex; flex-direction: column; gap: 26px; }
-  .step { display: flex; gap: 20px; align-items: flex-start; }
-  .step-mark {
-    flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
-    border: 1px solid var(--hairline-strong); color: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif; font-weight: 600; font-size: 14px;
-  }
-  .step h3 { margin: 4px 0 5px; font-size: 16px; font-weight: 600; }
-  .step p { margin: 0; color: var(--text-dim); font-size: 14.5px; max-width: 55ch; }
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .diff-card { border: 1px solid var(--hairline); border-radius: 12px; padding: 18px; }
+  .diff-card.no { opacity: 0.7; }
+  .diff-card.yes { border-color: var(--accent); background: rgba(255,180,84,0.05); }
+  .diff-card h4 { margin: 0 0 8px; font-size: 13.5px; font-family: 'Fraunces', serif; }
+  .diff-card.yes h4 { color: var(--accent); }
+  .diff-card p { margin: 0; font-size: 12.5px; color: var(--text-dim); line-height: 1.5; }
 
-  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .plan {
-    border: 1px solid var(--hairline); border-radius: 14px; padding: 26px;
-  }
+  .steps { display: flex; flex-direction: column; gap: 24px; }
+  .step { display: flex; gap: 18px; align-items: flex-start; }
+  .step-mark { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--hairline-strong); color: var(--accent); display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-weight: 600; font-size: 13px; }
+  .step h3 { margin: 3px 0 5px; font-size: 15px; font-weight: 600; }
+  .step p { margin: 0; color: var(--text-dim); font-size: 13.5px; max-width: 56ch; }
+
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .plan { border: 1px solid var(--hairline); border-radius: 14px; padding: 24px; }
   .plan.pro { border-color: var(--accent); background: rgba(255,180,84,0.05); }
-  .plan h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 18px; margin: 0 0 4px; }
-  .plan .price { color: var(--text-dim); font-size: 13px; margin: 0 0 18px; }
-  .plan ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .plan li { font-size: 13.5px; color: var(--text-dim); padding-left: 18px; position: relative; }
+  .plan h3 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 17px; margin: 0 0 4px; }
+  .plan .price { color: var(--text-dim); font-size: 13px; margin: 0 0 16px; }
+  .plan ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .plan li { font-size: 13px; color: var(--text-dim); padding-left: 18px; position: relative; }
   .plan li::before { content: "—"; position: absolute; left: 0; color: var(--text-faint); }
   .plan.pro li { color: var(--text); }
   .plan.pro li::before { content: "✦"; color: var(--accent); font-size: 11px; top: 2px; }
 
-  .trust {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-  }
-  .trust-item h4 { font-size: 14.5px; font-weight: 600; margin: 0 0 7px; }
-  .trust-item p { font-size: 13.5px; color: var(--text-dim); margin: 0; line-height: 1.55; }
+  .faq-item { border-bottom: 1px solid var(--hairline); }
+  .faq-q { width: 100%; text-align: left; background: none; border: none; color: var(--text); font-family: inherit; font-size: 14.5px; font-weight: 600; padding: 16px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .faq-q .chevron { color: var(--text-faint); transition: transform 0.2s ease; flex-shrink: 0; margin-left: 12px; }
+  .faq-item.open .faq-q .chevron { transform: rotate(180deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-a p { margin: 0 0 16px; font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
 
-  footer {
-    border-top: 1px solid var(--hairline);
-    padding: 34px 0 48px;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  }
+  .trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .trust-item h4 { font-size: 14px; font-weight: 600; margin: 0 0 6px; }
+  .trust-item p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  footer { border-top: 1px solid var(--hairline); padding: 32px 0 46px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   footer .fbrand { font-family: 'Fraunces', serif; font-size: 14px; color: var(--text-dim); }
-  footer .flinks { display: flex; gap: 22px; font-size: 13px; }
+  footer .flinks { display: flex; gap: 20px; font-size: 13px; }
   footer a { color: var(--text-dim); text-decoration: none; }
   footer a:hover { color: var(--text); }
 
   @media (max-width: 640px) {
-    .plans { grid-template-columns: 1fr; }
-    .trust { grid-template-columns: 1fr; }
+    .plans, .diff-grid, .trust { grid-template-columns: 1fr; }
     nav .links { display: none; }
   }
 </style>
@@ -147,30 +131,31 @@
   <div class="wrap">
     <nav>
       <div class="brand">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/>
-          <path d="M12 3 L14.5 11.5 L12 21 L9.5 11.5 Z" fill="currentColor"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/><path d="M12 3 L14.5 11.5 L12 21 L9.5 11.5 Z" fill="currentColor"/></svg>
         Discover Daily
       </div>
       <div class="links">
+        <a href="#demo">Try the demo</a>
         <a href="#how-it-works">How it works</a>
         <a href="#plans">Pricing</a>
+        <a href="#faq">FAQ</a>
         <a href="privacy.html">Privacy</a>
       </div>
     </nav>
 
     <div class="hero">
-      <h1>Five things you've never searched for. Every day.</h1>
+      <span class="badge-soon">🚧 Coming soon to Chrome &amp; Edge Web Stores</span>
+      <h1 style="margin-top:18px;">Five things you've never searched for. Every day.</h1>
       <p class="sub">
         Discover Daily reads your own browsing history — locally, on your
-        device — and compares it against a curated bank of topics spanning
-        science, languages, history, and more. Each morning, it hands you
-        five things you genuinely haven't looked into yet.
+        device — and compares it against a curated bank of 85 topics
+        spanning science, languages, history, and more. Each morning, it
+        hands you five things you genuinely haven't looked into yet, so
+        learning something new stops being a decision and starts being a
+        habit.
       </p>
       <div class="hero-actions">
-        <a class="btn-primary" href="#how-it-works">See how it works</a>
-        <span class="btn-note">A browser extension for Chrome and Edge — nothing to install to read this page.</span>
+        <a class="btn-primary" href="#demo">Try a live demo below ↓</a>
       </div>
     </div>
   </div>
@@ -178,38 +163,65 @@
 
 <div class="wrap">
 
+  <section id="demo">
+    <div class="section-head">
+      <p class="eyebrow">SEE IT WORK</p>
+      <h2>This is genuinely how it looks</h2>
+      <p>Not a mockup — real topics from the actual bank, real links. Hit shuffle to see a different five.</p>
+    </div>
+    <div class="demo-frame">
+      <div class="demo-topbar">
+        <span class="demo-title">Today's five</span>
+        <button class="demo-shuffle" onclick="shuffleDemo()">🔀 Shuffle</button>
+      </div>
+      <div id="demoCards" class="demo-cards"></div>
+      <p class="demo-caption">This is the free tier experience — Pro adds unlimited shuffles, curated sources, a recall quiz, and more.</p>
+    </div>
+  </section>
+
+  <section id="different">
+    <div class="section-head">
+      <p class="eyebrow">WHY THIS EXISTS</p>
+      <h2>Most "learn something new" apps don't know what you already know</h2>
+      <p>Random daily-fact apps are common. Something that filters against your actual history isn't.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card no">
+        <h4>Typical daily-fact app</h4>
+        <p>Shows you a random fact from a category you picked. No idea whether you've seen it before, read about it elsewhere, or already know it cold.</p>
+      </div>
+      <div class="diff-card yes">
+        <h4>Discover Daily</h4>
+        <p>Checks your own browsing history first. If you've already searched or read about something, it's filtered out — what you get is genuinely new to you, not just new to the app.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="how-it-works">
     <div class="section-head">
-      <h2>How it works</h2>
-      <p>No accounts, no setup, no algorithm you have to train.</p>
+      <p class="eyebrow">HOW IT WORKS</p>
+      <h2>No accounts, no setup, no algorithm to train</h2>
+      <p></p>
     </div>
     <div class="steps">
       <div class="step">
         <span class="step-mark">1</span>
-        <div>
-          <h3>You browse like normal</h3>
-          <p>Nothing changes about how you use your browser. No new tabs, no interruptions, no tracking beyond what already happens locally in your own history.</p>
-        </div>
+        <div><h3>You browse like normal</h3><p>Nothing changes about how you use your browser. No new tabs, no interruptions.</p></div>
       </div>
       <div class="step">
         <span class="step-mark">2</span>
-        <div>
-          <h3>It compares your history to a curated topic bank</h3>
-          <p>All of this happens on your device, inside the extension. Your browsing history is never uploaded anywhere.</p>
-        </div>
+        <div><h3>It compares your history to a curated topic bank</h3><p>Entirely on your device, inside the extension. Your browsing history is never uploaded anywhere.</p></div>
       </div>
       <div class="step">
         <span class="step-mark">3</span>
-        <div>
-          <h3>Every morning, five fresh picks</h3>
-          <p>Spread across categories — science, languages, history, philosophy, skills, and more — filtered so they're genuinely new to you.</p>
-        </div>
+        <div><h3>Every morning, five fresh picks</h3><p>Spread across categories, filtered so they're genuinely new to you — plus a streak, a recall quiz, and a monthly recap to help it actually stick.</p></div>
       </div>
     </div>
   </section>
 
   <section id="plans">
     <div class="section-head">
+      <p class="eyebrow">PRICING</p>
       <h2>Free, or Pro if it sticks</h2>
       <p>Start free. Upgrade only if this becomes a habit worth investing in.</p>
     </div>
@@ -221,6 +233,7 @@
           <li>5 daily topics from an 85-topic bank</li>
           <li>1 reshuffle per day</li>
           <li>Streak tracking</li>
+          <li>Join the 30-day challenge, win a free Pro month</li>
           <li>Night Sky theme</li>
         </ul>
       </div>
@@ -230,6 +243,8 @@
         <ul>
           <li>Unlimited reshuffles</li>
           <li>Curated, higher-quality video sources</li>
+          <li>Weekly recall quiz — tests what you actually remember</li>
+          <li>Monthly learning recap with stats</li>
           <li>Learning journal with notes and export</li>
           <li>Spanish &amp; Hindi topic packs</li>
           <li>Import your own custom topic packs</li>
@@ -239,26 +254,26 @@
     </div>
   </section>
 
+  <section id="faq">
+    <div class="section-head">
+      <p class="eyebrow">QUESTIONS</p>
+      <h2>Frequently asked</h2>
+    </div>
+    <div id="faqList"></div>
+  </section>
+
   <section id="trust">
     <div class="section-head">
+      <p class="eyebrow">PRIVACY</p>
       <h2>Where your data goes</h2>
-      <p>Short version: nowhere, except one small check.</p>
+      <p>Short version: nowhere, except one small check if you upgrade.</p>
     </div>
     <div class="trust">
-      <div class="trust-item">
-        <h4>Your history stays on your device</h4>
-        <p>Comparisons run locally inside the extension. There's no server that receives or stores your browsing history.</p>
-      </div>
-      <div class="trust-item">
-        <h4>One network call for Pro</h4>
-        <p>If you upgrade, the extension checks whether your email has an active subscription. That's the only data it sends anywhere.</p>
-      </div>
-      <div class="trust-item">
-        <h4>Delete it any time</h4>
-        <p>Uninstalling removes everything stored locally — streaks, notes, settings. Nothing persists elsewhere.</p>
-      </div>
+      <div class="trust-item"><h4>Your history stays on your device</h4><p>Comparisons run locally inside the extension. No server receives or stores your browsing history.</p></div>
+      <div class="trust-item"><h4>One network call for Pro</h4><p>If you upgrade, the extension checks whether your email has an active subscription. That's the only data it sends anywhere.</p></div>
+      <div class="trust-item"><h4>Delete it any time</h4><p>Uninstalling removes everything stored locally — streaks, notes, settings. Nothing persists elsewhere.</p></div>
     </div>
-    <p style="margin-top:28px; font-size: 13.5px;"><a href="privacy.html">Read the full privacy policy →</a></p>
+    <p style="margin-top:26px; font-size: 13.5px;"><a href="privacy.html">Read the full privacy policy →</a></p>
   </section>
 
 </div>
@@ -272,6 +287,89 @@
     </div>
   </footer>
 </div>
+
+<script>
+const TOPICS = [
+  {title:"Why the sky isn't actually blue everywhere", category:"Science", blurb:"The physics of why our sky looks blue, but sunsets, other planets, and even other stars' skies don't.", query:"Diffuse sky radiation"},
+  {title:"How does a CPU actually execute code", category:"Technology", blurb:"From transistors to logic gates to the fetch-decode-execute cycle running your machine right now.", query:"Central processing unit"},
+  {title:"Basics of Japanese sentence structure", category:"Languages", blurb:"Why Japanese puts the verb at the end, and how particles do the job English uses word order for.", query:"Japanese grammar"},
+  {title:"The Library of Alexandria's actual fate", category:"History", blurb:"The popular story of one dramatic fire is mostly myth — the real decline was slower and stranger.", query:"Library of Alexandria"},
+  {title:"What makes a font readable", category:"Arts & Design", blurb:"Kerning, x-height, and stroke contrast — the invisible decisions behind text you read every day.", query:"Typography"},
+  {title:"What actually happens when you get a fever", category:"Health & Body", blurb:"Your body deliberately raises its own temperature as a weapon — here's the mechanism.", query:"Fever"},
+  {title:"The Dunning-Kruger effect, correctly explained", category:"Psychology & Mind", blurb:"It's often misquoted — the real finding is subtler than 'stupid people think they're smart.'", query:"Dunning–Kruger effect"},
+  {title:"The Ship of Theseus", category:"Philosophy", blurb:"If you replace every part of a ship one by one, is it still the same ship? A 2,000-year-old identity puzzle.", query:"Ship of Theseus"},
+  {title:"How tectonic plates reshape the planet", category:"Nature & Earth", blurb:"The slow-motion mechanism that builds mountains, causes earthquakes, and moves continents.", query:"Plate tectonics"},
+  {title:"How we know how far away stars are", category:"Space & Astronomy", blurb:"Parallax, standard candles, and redshift — the layered methods astronomers use to measure the universe.", query:"Cosmic distance ladder"},
+  {title:"What inflation actually does to money", category:"Business & Economics", blurb:"The mechanism connecting prices, money supply, and the value of what's in your wallet.", query:"Inflation"},
+  {title:"Why some musical intervals sound 'wrong'", category:"Music", blurb:"The physics of overlapping sound waves that makes certain note combinations feel tense.", query:"Consonance and dissonance"},
+  {title:"How fermentation transforms food", category:"Food & Culture", blurb:"The microbial process behind bread, cheese, kimchi, beer, and dozens of foods across every culture.", query:"Fermentation"},
+  {title:"The basics of touch typing", category:"Skills & Craft", blurb:"How muscle memory on the home row can roughly double your typing speed over time.", query:"Touch typing"},
+  {title:"CRISPR gene editing, in plain terms", category:"Science", blurb:"How scientists cut and rewrite DNA with a tool borrowed from bacteria's immune system.", query:"CRISPR gene editing"},
+];
+
+function wikiUrl(q){return `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(q)}`;}
+function googleUrl(q){return `https://www.google.com/search?q=${encodeURIComponent(q)}`;}
+function youtubeUrl(q){return `https://www.youtube.com/results?search_query=${encodeURIComponent(q+" explained")}`;}
+
+let lastShown = [];
+function pickFive() {
+  const pool = TOPICS.filter(t => !lastShown.includes(t.title));
+  const source = pool.length >= 5 ? pool : TOPICS;
+  const shuffled = [...source].sort(() => Math.random() - 0.5).slice(0, 5);
+  lastShown = shuffled.map(t => t.title);
+  return shuffled;
+}
+
+function renderDemo() {
+  const picks = pickFive();
+  const container = document.getElementById("demoCards");
+  container.innerHTML = "";
+  picks.forEach(t => {
+    const card = document.createElement("div");
+    card.className = "demo-card";
+    card.innerHTML = `
+      <div class="demo-cat">${t.category}</div>
+      <p class="demo-title-text">${t.title}</p>
+      <p class="demo-blurb">${t.blurb}</p>
+      <div class="demo-links">
+        <a class="demo-link watch" href="${youtubeUrl(t.query)}" target="_blank" rel="noopener">Watch</a>
+        <a class="demo-link read" href="${googleUrl(t.query)}" target="_blank" rel="noopener">Read</a>
+        <a class="demo-link wiki" href="${wikiUrl(t.query)}" target="_blank" rel="noopener">Wiki</a>
+      </div>`;
+    container.appendChild(card);
+  });
+}
+function shuffleDemo() { renderDemo(); }
+renderDemo();
+
+const FAQS = [
+  {q:"Is my browsing history actually private?", a:"Yes. Everything is compared locally, inside the extension, on your own device. Your history is never uploaded, logged, or sent to any server — the only network call the extension ever makes is a small check to verify Pro subscription status, and even that only sends an email address, never any browsing data."},
+  {q:"Does this work on mobile?", a:"Not yet. Chrome extensions don't run on mobile browsers the way they do on desktop, and the core feature (reading your browsing history) isn't something a mobile app can access the same way. This is a desktop-first tool for now."},
+  {q:"What happens if I uninstall it?", a:"Everything stored locally — your streak, notes, settings, topic history — is removed with it. Nothing persists anywhere else, because nothing was ever stored anywhere else."},
+  {q:"How is this different from a random daily-fact app?", a:"Random fact apps don't know what you already know. Discover Daily checks your own browsing history first, so what you see is filtered against things you've actually already searched or read — genuinely new to you, not just randomly assigned."},
+  {q:"Is it really free to start?", a:"Yes — the free tier is fully usable on its own: 5 daily topics, 1 reshuffle a day, streak tracking, and you can even win a free month of Pro by completing the 30-day challenge. Pro is there for people who want more control and depth, not a requirement to use the core product."},
+  {q:"Which browsers will this support?", a:"Chrome and Microsoft Edge at launch, since both support the same extension format. A Firefox version isn't ruled out, but isn't built yet."},
+];
+
+const faqList = document.getElementById("faqList");
+FAQS.forEach((item) => {
+  const div = document.createElement("div");
+  div.className = "faq-item";
+  div.innerHTML = `
+    <button class="faq-q" aria-expanded="false">
+      <span>${item.q}</span>
+      <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="faq-a"><p>${item.a}</p></div>`;
+  const btn = div.querySelector(".faq-q");
+  btn.addEventListener("click", () => {
+    const isOpen = div.classList.contains("open");
+    document.querySelectorAll(".faq-item.open").forEach(el => { if (el !== div) el.classList.remove("open"); });
+    div.classList.toggle("open", !isOpen);
+  });
+  faqList.appendChild(div);
+});
+</script>
 
 </body>
 </html>
